@@ -1,0 +1,19 @@
+.out-foto {
+    border: 1px lightslategray;
+}
+
+.aluno-box {
+    border: 2px solid grey;
+    margin-top: 6%;
+    height: 100%;
+    margin-bottom: 4%;
+}
+
+.aluno-box-inner {
+    padding: 10px 10px 10px 10px;
+}
+
+.no-border {
+    border: 0;
+    box-shadow: none; 
+}
