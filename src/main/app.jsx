@@ -1,16 +1,30 @@
-import 'modules/bootstrap/dist/css/bootstrap.min.css'
-import 'modules/font-awesome/css/font-awesome.min.css'
-import '../template/custom.css'
+import '../common/dependencies';
 
-import React from 'react'
-import ReactDOM from 'react-dom'
+import React from 'react';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
-import Boletim from '../components/boletim'
-import Aluno from '../components/aluno'
+import Header from '../common/header'
+import SideBar from '../common/sidebar'
+
+import Aluno from '../components/aluno';
+import Boletim from '../components/boletim';
+import Home from '../components/home';
 
 export default props => (
-    <div className='container'>
-        <Aluno />
-        <Boletim />
+    <div className='wrapper'>
+
+        <Header />
+        <SideBar />
+
+        <div className='content-wrapper'>
+            <BrowserRouter>
+                <Switch>
+                <Route exact path="/" component={Home}/>
+                <Route path="/alunos" component={Aluno}/>
+                <Route path="/boletim" component={Boletim}/> 
+                </Switch>
+            </BrowserRouter>
+        </div>
+
     </div>
 )
