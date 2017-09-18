@@ -40,12 +40,16 @@ class Auth extends Component
               <Field component={Input} type="password" className="form-control" placeholder="Senha" name="password"/>
               <span className="glyphicon glyphicon-lock form-control-feedback"></span>
             </div>
+            <div className={`text-center ${this.props.auth.isAuthenticating ? 'show' : 'hidden'}`}>
+              <i className='fa fa-spinner fa-spin'/>              
+            </div>
             <div className={`alert alert-danger ${this.props.auth.isLoginError ? 'show' : 'hidden'}`}>
-              <p>{this.props.auth.msgError}</p>              
+              <p>{this.props.auth.msgError}</p>  
             </div>
             <div className="row">
               <div className="col-xs-4">
-                <button type="submit" className="btn btn-primary btn-block btn-flat">Entrar</button>
+                <button type="submit" className="btn btn-primary btn-block btn-flat"
+                  disabled={this.props.isAuthenticating}>Entrar</button>
               </div>
             </div>
           </form>

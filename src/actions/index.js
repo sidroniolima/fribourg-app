@@ -59,12 +59,12 @@ function submitLogin(values, url)
 {
     return dispatch => 
     {
+        dispatch({ type: 'IS_AUTHENTICATING', payload: true });
         axios.post(url, values)
             .then(resp => 
             {
                 Promise.all(
-                    [dispatch({ type : 'TOKEN_FETCHED', payload: resp })
-                ]);
+                    [ dispatch({ type : 'TOKEN_FETCHED', payload: resp })]);
             })
             .catch(e => {
                 dispatch({ type: 'INVALID_LOGIN', payload: 'Usuário e/ou senha inválidos.' });
