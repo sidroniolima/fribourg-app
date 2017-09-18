@@ -15,7 +15,7 @@
   },
   "author": "Sidronio Lima - tetraTI",
   "license": "ISC",
-  "devDependencies": {
+  "dependencies": {
     "admin-lte": "^2.3.11",
     "axios": "^0.15.3",
     "babel-core": "^6.22.1",
@@ -49,10 +49,8 @@
     "redux-promise": "^0.5.3",
     "redux-thunk": "^2.1.0",
     "style-loader": "^0.13.1",
+    "url-loader": "^0.5.9",
     "webpack": "^1.14.0",
     "webpack-dev-server": "^1.16.2"
-  },
-  "dependencies": {
-    "react-easy-chart": "^0.1.13"
   }
 }
