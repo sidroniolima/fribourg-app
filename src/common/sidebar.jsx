@@ -14,7 +14,7 @@ class SideBar extends Component
 
             <div className="user-panel">
               <div className="pull-left image">
-                <img src="/assets/images/aluno.png" className="img-circle" alt="User Image" />
+                <img src={require('../assets/images/aluno.png')} className="img-circle" alt="User Image" />
               </div>
               <div className="pull-left info">
                 <p>{alunoLogado.nome}</p>

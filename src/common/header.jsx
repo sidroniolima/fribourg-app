@@ -52,7 +52,7 @@ class Header extends Component
                         <li>
                           <a href="#">
                             <div className="pull-left">
-                              <img src="/assets/images/aluno.png" className="img-circle" alt="User Image"/>
+                              <img src={require('../assets/images/aluno.png')} className="img-circle" alt="User Image"/>
                             </div>
                             <h4>
                                 Support Team
@@ -93,13 +93,13 @@ class Header extends Component
                     className="dropdown-toggle" data-toggle="dropdown"
                     aria-expanded={this.state.open ? 'true' : 'false'}>
                     
-                    <img src="/assets/images/aluno.png" className="user-image" alt="User Image"/>
+                    <img src={require('../assets/images/aluno.png')} className="user-image" alt="User Image"/>
                     <span className="hidden-xs">{alunoLogado.nome}</span>
 
                   </a>
                   <ul className="dropdown-menu">
                     <li className="user-header">
-                      <img src="/assets/images/aluno.png" className="img-circle" alt="User Image"/>
+                      <img src={require('../assets/images/aluno.png')} className="img-circle" alt="User Image"/>
 
                       <p>
                         {alunoLogado.nome}
