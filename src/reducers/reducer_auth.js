@@ -5,6 +5,7 @@ const INITIAL_STATE =
   token: JSON.parse(localStorage.getItem(tokenKey)),
   isAuthenticated: false,
   isLoginError: false,
+  isAuthenticating: false,
   msgError: ''
 };
 
@@ -31,7 +32,7 @@ export default (state = INITIAL_STATE, action) =>
       }
 
     case 'INVALID_LOGIN':
-      return { ...state, isLoginError: true, msgError: action.payload };
+      return { ...state, isLoginError: true, msgError: action.payload, isAuthenticating: false };
     default:
       return state;
   }
