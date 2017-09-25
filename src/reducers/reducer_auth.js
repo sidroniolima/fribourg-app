@@ -1,3 +1,5 @@
+import consts from '../common/constants';
+
 const tokenKey = '_fribourg_app';
 
 const INITIAL_STATE = 
@@ -6,6 +8,7 @@ const INITIAL_STATE =
   isAuthenticated: false,
   isLoginError: false,
   isAuthenticating: false,
+  isForbidden: false,
   msgError: ''
 };
 
@@ -33,6 +36,10 @@ export default (state = INITIAL_STATE, action) =>
 
     case 'INVALID_LOGIN':
       return { ...state, isLoginError: true, msgError: action.payload, isAuthenticating: false };
+
+    case consts.ACCESS_FORBIDDEN:
+      return { ...state, isForbidden: true }
+
     default:
       return state;
   }

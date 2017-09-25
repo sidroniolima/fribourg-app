@@ -6,9 +6,11 @@ import { bindActionCreators } from 'redux';
 import { BarChart } from 'react-easy-chart';
 
 import { getAlunoProfile, login } from '../actions/';
+import VerifyAuth from '../hoc/verify_auth';
+
 import axios from 'axios';
 
-class Home extends Component 
+class Home extends Component
 {
 	componentDidMount()
 	{
@@ -20,7 +22,7 @@ class Home extends Component
 		const arrayMedias = [];
 
 			_.mapValues(
-				_.filter(medias, {anoLetivo: 2017}), (o, []) => { arrayMedias.push({x: o.materiaDescricao, y: o.nota}); } );
+				_.filter(medias, {'anoLetivo': 2017, 'numeroPeriodo': 2}), (o, []) => { arrayMedias.push({x: o.materiaDescricao, y: o.nota}); } );
 
 		return arrayMedias;
   }
@@ -113,4 +115,4 @@ class Home extends Component
 const mapDispatchToProps = dispatch => bindActionCreators( { getAlunoProfile }, dispatch);
 const mapStateToProps = state => ({ alunoLogado: state.alunos.alunoLogado })
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default connect(mapStateToProps, mapDispatchToProps)(VerifyAuth(Home));
