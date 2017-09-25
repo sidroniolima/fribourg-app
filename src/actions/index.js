@@ -41,6 +41,8 @@ function handleError(e)
         {
             case 401:
                 return { type: consts.TOKEN_VALIDATED, payload: false };
+            case 403:
+                return { type: consts.ACCESS_FORBIDDEN, payload: false };
         }
     }
 }
