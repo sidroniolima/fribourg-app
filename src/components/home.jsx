@@ -1,118 +1,106 @@
-import _ from 'lodash';
-
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { BarChart } from 'react-easy-chart';
-
-import { getAlunoProfile, login } from '../actions/';
-import VerifyAuth from '../hoc/verify_auth';
-
 import axios from 'axios';
+
+import JobNewForm from './job_new_form';
+import JobsList from './jobs_list';
+
+import { getJobsConfeccaoLogada, listJobsOportunidades } from '../actions/actions_job';
 
 class Home extends Component
 {
 	componentDidMount()
 	{
-		this.props.getAlunoProfile();
+		
 	}
 
-  renderMedias(medias)
-  {
-		const arrayMedias = [];
+	renderContent()
+	{
+		const behavior = this.props.auth.behavior();
+		console.log(behavior);
+		switch(behavior)
+		{
+			case 'ROLE_CONFECCAO':
+			{
+				this.props.getJobsConfeccaoLogada();
+				const jobsConfeccaoLogada = this.props.job.jobsConfeccaoLogada || [];
 
-			_.mapValues(
-				_.filter(medias, {'anoLetivo': 2017, 'numeroPeriodo': 2}), (o, []) => { arrayMedias.push({x: o.materiaDescricao, y: o.nota}); } );
+				return (
+					<div>
+					<section className="content-header">
+					<h4>Bem-vindo! Contrate alguém e fique de olho em sua produção.</h4>
+					<small>Home</small>
+					</section>
 
-		return arrayMedias;
-  }
+					<section className="content">
+						<div className="row">
+
+							<div className="col-md-6">
+								<div className="box box-primary">
+									<div className="box-header with-border">
+										<h5 className="box-title">Quer produzir algo?</h5>
+									</div>
+									<JobNewForm />
+								</div>
+							</div>
+
+							<div className="col-md-6">
+								<div className="box box-primary">
+									<div className="box-header with-border">
+										<h5 className="box-title">Seus pedidos de produção</h5>
+									</div>
+									<JobsList list={ jobsConfeccaoLogada } />
+								</div>
+							</div>
+						</div>
+					</section>				
+					</div>
+				);	
+			}
+			case 'ROLE_FACCAO':
+			{
+				this.props.listJobsOportunidades();
+				const jobsOportunidades = this.props.job.jobsOportunidades || [];
+				
+				return (
+					<div>
+					<section className="content-header">
+					<h4>Bem-vindo! Encontre um pedido para você produzir.</h4>
+					<small>Home</small>
+					</section>
+
+					<section className="content">
+						<div className="row">
+
+							<div className="col-md-12">
+								<div className="box box-primary">
+									<div className="box-header with-border">
+										<h5 className="box-title">Lista de oportunidades</h5>
+									</div>
+									<JobsList list={ jobsOportunidades } />
+								</div>
+							</div>
+							
+						</div>
+					</section>
+					</div>				
+				);									
+			}
+		}
+	}
 
 	render() 
 	{
-		const alunoLogado = this.props.alunoLogado || {};
-		const barchartData = this.renderMedias(alunoLogado.medias);
-
 		return (
 			<div>
-				{/* Content Header (Page header)  */}
-				<section className="content-header">
-					<h1>Ambiente virtual do aluno</h1>
-					<small>Home</small>
-				</section>
-
-				{/* Main content */}
-				<section className="content">
-					<div className="row">
-
-						{/* left-column */}
-						<div className="col-md-6">
-								{/* general form elements */}
-							<div className="box box-primary">
-								<div className="box-header with-border">
-									<h3 className="box-title">Dados do aluno</h3>
-								</div>
-								{/* /.box-header */}
-								{/* form start */}
-								<div role="form">
-									<div className="box-body">
-										<div className="form-group">
-											<label htmlFor="inputSerie">Série</label>
-											<input type="text" className="form-control" id="inputSerie" placeholder="Série" value={alunoLogado.serieDescricao  || ''}/>
-										</div>
-										<div className="form-group">
-											<label htmlFor="inputTurma">Turma</label>
-											<input type="text" className="form-control" id="inputTurma" placeholder="Turma" value={alunoLogado.turmaNumero  || ''}/>
-										</div>
-										<div className="form-group">
-											<label htmlFor="inputNome">Nome</label>
-											<input type="text" className="form-control" id="inputNome" placeholder="Nome do aluno" value={alunoLogado.nome  || ''}/>
-										</div>							
-										<div className="form-group">
-											<label htmlFor="inputEmail">Email</label>
-											<input type="email" className="form-control" id="inputEmail" placeholder="Digite o email"
-												value={alunoLogado.email  || ''}/>
-										</div>													
-									</div>
-									{/* /.box-body */} 
-
-									<div className="box-footer">
-										<button type="submit" className="btn btn-primary">Submit</button>
-									</div>
-								</div>
-							</div>
-							{/* /.box */} 
-						</div>
-						{/* /.col (left) */}
-
-						{/* right-column */}
-						<div className="col-md-6">
-								{/* general form elements */}
-							<div className="box box-primary">
-								<div className="box-header with-border">
-									<h3 className="box-title">Médias atuais</h3>
-								</div>
-								{/* /.box-header */}
-								<BarChart 
-									axes
-									data={barchartData} 
-									margin={{top: 20, right: 0, bottom: 40, left: 40}}
-									width={480}
-									yDomainRange={ [0,100] }
-    							colorBars
-    							barWidth={40}/>
-								{/* form start */}
-							</div>
-							{/* /.box */} 
-						</div>
-						{/* /.col (left) */}						
-					</div>
-				</section>
+				{this.renderContent()}
 			</div>
 		);
 	}
 }
 
-const mapDispatchToProps = dispatch => bindActionCreators( { getAlunoProfile }, dispatch);
-const mapStateToProps = state => ({ alunoLogado: state.alunos.alunoLogado })
+const mapStateToProps = state => ({ job : state.job });     
+const mapDispatchToProps = dispatch => bindActionCreators({ getJobsConfeccaoLogada, listJobsOportunidades }, dispatch);
 
-export default connect(mapStateToProps, mapDispatchToProps)(VerifyAuth(Home));
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

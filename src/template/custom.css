@@ -17,3 +17,17 @@
     border: 0;
     box-shadow: none; 
 }
+
+.data-table 
+{
+    table-layout: fixed;
+    width: 100%;
+    white-space: nowrap;
+}
+  
+.data-table td 
+{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

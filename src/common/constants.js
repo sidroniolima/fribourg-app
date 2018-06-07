@@ -2,9 +2,16 @@ export default {
   GETTED_ALUNO_LOGADO : 'GETTED_ALUNO_LOGADO',
   TOKEN_VALIDATED: 'TOKEN_VALIDATED',
   FETCHED_ALUNO_MEDIAS: 'FETCHED_ALUNO_MEDIAS', 
-  API_URL : "https://rocky-hamlet-70736.herokuapp.com/api",
-  AUTH_URL : "https://rocky-hamlet-70736.herokuapp.com/login",
-  //API_URL : "http://localhost:8081/api",
-  //AUTH_URL : "http://localhost:8081/login",
-  ACCESS_FORBIDDEN: 'ACCESS_FORBIDDEN'
+  JOB_CREATED: 'JOB_CREATED',
+  JOB_FORM_INITIATE: 'JOB_FORM_INITIATE',
+  JOB_CONFECCAO_LOGADA_FETCHED: 'JOB_CONFECCAO_LOGADA_FETCHED',
+  JOBS_OPORTUNIDADES_FETCHED: 'JOBS_OPORTUNIDADES_FETCHED',
+  
+  //API_URL : "https://rocky-hamlet-70736.herokuapp.com/api",
+  //AUTH_URL : "https://rocky-hamlet-70736.herokuapp.com/login",
+  API_URL : "http://localhost:8081/api",
+  AUTH_URL : "http://localhost:8081/login",
+  ACCESS_FORBIDDEN: 'ACCESS_FORBIDDEN',
+  TOKEN_KEY: '_job_faccao',
+  TOKEN_SECRET: 'secret'
 };

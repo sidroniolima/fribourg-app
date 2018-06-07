@@ -23,15 +23,15 @@ class Header extends Component
 
   render()
   {
-    const alunoLogado = this.props.alunoLogado || {};
+    const subject = this.props.auth.subject || {};
 
     return (
       <div>
         <header className="main-header">
 
           <a href="index2.html" className="logo">
-            <span className="logo-mini"><b>F</b>ribourg</span>
-            <span className="logo-lg"><b>Escola</b>Fribourg</span>
+            <span className="logo-mini"><b>Job</b>Facção</span>
+            <span className="logo-lg"><b>Encontre!</b>Contrate!</span>
           </a>
 
           <nav className="navbar navbar-static-top" role="navigation">
@@ -52,7 +52,7 @@ class Header extends Component
                         <li>
                           <a href="#">
                             <div className="pull-left">
-                              <img src={require('../assets/images/aluno.png')} className="img-circle" alt="User Image"/>
+                              <img src={require('../assets/images/sewing-machine.png')} className="img-circle" alt="User Image"/>
                             </div>
                             <h4>
                                 Support Team
@@ -93,16 +93,16 @@ class Header extends Component
                     className="dropdown-toggle" data-toggle="dropdown"
                     aria-expanded={this.state.open ? 'true' : 'false'}>
                     
-                    <img src={require('../assets/images/aluno.png')} className="user-image" alt="User Image"/>
-                    <span className="hidden-xs">{alunoLogado.nome}</span>
+                    <img src={require('../assets/images/sewing-machine.png')} className="user-image" alt="User Image"/>
+                    <span className="hidden-xs">{subject}</span>
 
                   </a>
                   <ul className="dropdown-menu">
                     <li className="user-header">
-                      <img src={require('../assets/images/aluno.png')} className="img-circle" alt="User Image"/>
+                      <img src={require('../assets/images/sewing-machine.png')} className="img-circle" alt="User Image"/>
 
                       <p>
-                        {alunoLogado.nome}
+                        {subject}
                         <small></small>
                       </p>
                     </li>
@@ -125,6 +125,6 @@ class Header extends Component
   }
 }
 
-const mapStateToProps = state => ( { alunoLogado : state.alunos.alunoLogado });
+const mapStateToProps = state => ( { auth : state.auth });
 const mapDispatchToProps = dispatch => bindActionCreators({ logout }, dispatch);
 export default connect(mapStateToProps, mapDispatchToProps)(Header);

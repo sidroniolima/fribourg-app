@@ -2,29 +2,39 @@ import axios from 'axios';
 
 import consts from '../common/constants';
 
-export function getAlunoProfile()
+export function getEmpresaProfile()
 {
   return dispatch => 
   {
-      axios.get(`${consts.API_URL}/aluno/profile`)
+      axios.get(`${consts.API_URL}/empresa/profile`)
         .then(resp => 
         {
-            dispatch({ type: consts.GETTED_ALUNO_LOGADO, payload: resp });
+            dispatch({ type: consts.GETTED_EMPRESA_LOGADA, payload: resp });
         })
         .catch(e => dispatch(handleError(e)));
     }
 }
 
-export function getAlunoMedias(aluno, anoLetivo)
+export function createEmpresa(values)
 {
-    return dispath => 
+    const data = {
+        nome: values.nome,
+        email: values.email,
+        usuario: {
+            username: values.email,
+            password: values.pass
+        },
+        tipo: values.tipo == 'Produzir' ? 'FACCAO' : 'CONFECCAO'
+    }
+
+    return dispatch => 
     {
-        axios.get(`${consts.API_URL}/aluno/${aluno}/${anoLetivo}`)
-            .then(resp => 
-            {
-                dispath({ type: consts.FETCHED_ALUNO_MEDIAS, payload: resp });
-            })
-            .catch(e => dispatch(handleError(e)));
+        axios.post(`${consts.API_URL}/empresa/pre/create`, data)
+          .then(resp => 
+          {
+              dispatch(login({username: values.email, password: values.pass}));
+          })
+          .catch(e => dispatch(handleError(e)));
     }
 }
 
@@ -49,6 +59,7 @@ function handleError(e)
 
 export function login(values)
 {
+    console.log(values);
     return submitLogin(values, consts.AUTH_URL);
 }
 

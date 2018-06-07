@@ -4,10 +4,8 @@ export default function(state = {}, action)
 {
 	switch(action.type)
 	{
-		case consts.GETTED_ALUNO_LOGADO : 
+		case consts.GETTED_EMPRESA_LOGADA : 
 			return { ...state, alunoLogado: action.payload.data }
-		case consts.FETCHED_ALUNO_MEDIAS:
-			return { ...state, mediasAnoLetivo: action.payload.data }
 	}
   return state;
 }

@@ -1,6 +1,13 @@
+.main-sidebar, .left-side {
+  min-height: 0%;
+}
+
 .wrapper
 {
-  background-color: #fff !important;
+  width: 100%;
+  min-height: 100%;
+  height: 100% !important;
+  position: absolute;
 }
 
 .login-box-body
@@ -16,4 +23,25 @@
 .login-box a:hover
 {
   cursor: pointer;
+}
+
+.hide
+{
+  visibility: 'hidden';
+}
+
+.back-image
+{
+  width: 100%;
+  min-height: 100%;
+  height: auto !important;
+
+  position: absolute;
+
+  background: url("../assets/images/fundo-auth.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover; /* For WebKit*/
+  -moz-background-size: cover;    /* Mozilla*/
+  -o-background-size: cover;      /* Opera*/
+  background-size: cover;         /* Generic*/
+
 }

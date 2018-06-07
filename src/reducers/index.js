@@ -1,10 +1,12 @@
 import { combineReducers } from 'redux';
 import { reducer as formReducer } from 'redux-form';
-import ReducerAlunos from './reducer_alunos';
+import ReducerEmpresa from './reducer_empresa';
 import ReducerAuth from './reducer_auth';
+import ReducerJob from './reducer_job';
 
 const rootReducer = combineReducers({
-  alunos : ReducerAlunos,
+  empresa : ReducerEmpresa,
+  job : ReducerJob,
   auth : ReducerAuth,
   form: formReducer
 });

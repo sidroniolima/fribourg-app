@@ -8,7 +8,7 @@ module.exports = {
         filename: 'app.js'
     },
     devServer: {
-        port: 8083,
+        port: 8080,
         historyApiFallback: true,
         contentBase: './public'
     },
